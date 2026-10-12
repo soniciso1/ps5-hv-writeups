@@ -83,11 +83,6 @@ A write primitive to the VMCB page is a write primitive to the nested-paging roo
 4. Assign the final GameOS NPT to an AP *before* transferring control to any guest-supplied RIP. No AP should execute attacker-selected code at `cur_npt == 0`.
 5. Ensure root 0 cannot map hypervisor/VMCB physical pages through guest-controlled page tables, and enforce protection for CPU-origin accesses, not just DMA.
 
----
-
-## Credit
-
-Discovery and the hardware reproduction of this bug belong to the original finder, who reported it through the PS5 bug bounty program. This writeup is a description of their published mechanism; the exploitation work is theirs.
 
 ## Greetings
 
