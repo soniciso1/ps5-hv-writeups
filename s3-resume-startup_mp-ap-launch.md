@@ -72,7 +72,6 @@ A write primitive to the VMCB page is a write primitive to the nested-paging roo
 ## Scope and limits
 
 - **Preconditions are real.** This requires prior GameOS kernel read/write plus ROP or kernel-call capability. It is a boundary crossing *after* kernel compromise, not an unprivileged entry point.
-- **Hardware-confirmed on 10.00** (devkit). Every VMCB transaction completed and every original value was restored, with no failure markers.
 - **13.60 is static-only.** The mechanism survives — HCALL `0x0f` still dispatches through the table at inner `0x183e8` to the AP-start path, the `bios_mapping` table is byte-identical across its full `0xc0` bytes, and `pcpus[]`/`m_vmcb+0xa8`/`core_id+0x138` are unchanged. But `hv_heap_offset` moved (`0x2a048` → `0x2a028`) and the allocation geometry differs, so the 10.00 binary is not portable; a 13.60 port must derive its aliases dynamically. Verdict: *mechanism yes, existing artifact no.*
 
 ## Remediation
